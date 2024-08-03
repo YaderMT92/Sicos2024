@@ -1,0 +1,77 @@
+{% extends "plantilla.html" %}
+{% block titulo %} SICOS {% endblock %}
+
+{% block contenido %}
+<h2>Buscar Clientes / Pólizas</h2>
+<div class="contenedor-formulario">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.tipo_busqueda.label_tag }} {{ form.tipo_busqueda }}
+        <div class="mi_clase">
+            {{ form.criterio_busqueda.label_tag }} {{ form.criterio_busqueda }}
+            <button type="submit">Buscar</button>
+        </div>
+    </form>
+</div>
+
+<div class="panel_container">
+    <div class="izquierda">
+        <div class="izquierda-superior">
+            {% if resultados %}
+            <h2>Resultados</h2>
+            {% if form.cleaned_data.tipo_busqueda == 'cliente' %}
+            <table class="table table-hover" id="tabla-clientes">
+                <thead>
+                    <tr>
+                        <th>IdCliente</th>
+                        <th>Nombre Cliente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resultado in resultados %}
+                    <tr data-idcliente="{{ resultado.cliente.IdCliente }}">
+                        <td><a href="#" class="cliente-link">{{ resultado.cliente.IdCliente }}</a></td>
+                        <td>{{ resultado.cliente.Nombres }} {{ resultado.cliente.Apellidos }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>IdPoliza</th>
+                        <th>Número de Póliza</th>
+                        <th>IdCliente</th>
+                        <th>Nombre del Cliente</th>
+                        <th>Apellido del Cliente</th>
+                        <th>Desde</th>
+                        <th>Hasta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resultado in resultados %}
+                    <tr>
+                        <td>{{ resultado.poliza.IdPoliza }}</td>
+                        <td>{{ resultado.poliza.NumeroPoliza }}</td>
+                        <td>{{ resultado.cliente.IdCliente }}</td>
+                        <td>{{ resultado.cliente.Nombres }}</td>
+                        <td>{{ resultado.cliente.Apellidos }}</td>
+                        <td>{{ resultado.poliza.desde }}</td>
+                        <td>{{ resultado.poliza.hasta }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="izquierda-inferior"></div>
+    <div class="derecha">
+        <h2>Pólizas de cliente seleccionado</h2>
+        <div class="derecha-superior" id="tabla-polizas"></div>
+        <div class="derecha-inferior"></div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "plantilla.html" %}
+{% block titulo %} SICOS {% endblock %}
+
+{% block contenido %} 
+  <h1>Registro de Clientes</h1>
+  <form id="clienteForm" method="post" action="{% url 'clientes' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+  </form>
+
+{% endblock %}
+

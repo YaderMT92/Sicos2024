@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title> {% block titulo %} {% endblock %}</title>
+    <!-- {% load static %} --> 
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css'>
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+    </head>
+  
+  <body>
+
+<!-- partial:index.partial.html -->
+<div class='dashboard'>
+  <div class="dashboard-nav">
+    <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#" class="brand-logo"> <span>SICOS 4.0</span></a></header>
+    <nav class="dashboard-nav-list">
+      <a href="{% url 'panel' %}" class="dashboard-nav-item {% if request.path == '/panel' %}active{% endif %}">
+        <i class="fas fa-home"></i> Inicio
+    </a>   
+    <a href="{% url 'clientes' %}" class="dashboard-nav-item {% if request.path == '/clientes' %}active{% endif %}">
+      <i class="fas fa-user"></i> Clientes
+  </a>   
+      <a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Adendas</a>
+      <a href="#" class="dashboard-nav-item"><i class="fas fa-money-check-alt"></i> Pagos </a>
+      <a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Reportes </a>
+      <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Consultas </a>
+        <div class='dashboard-nav-dropdown-menu'><a href="#" class="dashboard-nav-dropdown-item">Consulta Dinámica</a><a href="#" class="dashboard-nav-dropdown-item">Mora</a><a href="#" class="dashboard-nav-dropdown-item">Vencimientos</a><a href="#" class="dashboard-nav-dropdown-item">Clientes</a>
+          <a href="#" class="dashboard-nav-dropdown-item">Certificado</a>
+        </div>
+      </div>
+      <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-money-check-alt"></i> Comisiones </a>
+        <div class='dashboard-nav-dropdown-menu'><a href="#" class="dashboard-nav-dropdown-item">USD</a><a href="#" class="dashboard-nav-dropdown-item">COR</a><a href="#" class="dashboard-nav-dropdown-item">Pendientes</a><a href="#" class="dashboard-nav-dropdown-item">Importar</a><a href="#" class="dashboard-nav-dropdown-item">Planilla</a>
+
+          <a href="#" class="dashboard-nav-dropdown-item">Otros Informes</a>
+        </div>
+      </div>
+      <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-folder"></i> Otros </a>
+        <div class='dashboard-nav-dropdown-menu'><a href="#" class="dashboard-nav-dropdown-item">Usuarios</a><a href="#" class="dashboard-nav-dropdown-item">Permisos</a><a href="#" class="dashboard-nav-dropdown-item"> Cias y Productos</a><a href="#" class="dashboard-nav-dropdown-item">Calendario</a><a href="#" class="dashboard-nav-dropdown-item">Notificaciones</a>
+        </div>
+      </div>
+      <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-book"></i> Catalogos </a>
+        <div class='dashboard-nav-dropdown-menu'><a href="#" class="dashboard-nav-dropdown-item">Tipo Cambio</a><a href="#" class="dashboard-nav-dropdown-item">Caract. Cert.</a><a href="#" class="dashboard-nav-dropdown-item">Coberturas</a><a href="#" class="dashboard-nav-dropdown-item">Doc. Reclamos</a><a href="#" class="dashboard-nav-dropdown-item">Doc. PLD</a>
+          <a href="#" class="dashboard-nav-dropdown-item">Tipo Deducciones</a><a href="#" class="dashboard-nav-dropdown-item">Configuraciones</a>
+        </div>
+      </div>
+      <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Comunicaciones </a><a href="#" class="dashboard-nav-item"><i class="fas fa-users"></i> Correos Masivos </a>
+      <div class="nav-item-divider"></div>
+      <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Salir </a>
+    </nav>
+  </div>
+  
+  
+  <div class='dashboard-app'>
+    <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+    <div class='dashboard-content'>
+        <div class='container'>
+            <div class='card'>
+                <div class='card-body'>
+                  {% block contenido %} {% endblock %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+ 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
+    <script  src="/static/script.js"></script>
+        
+    </body>
+  </html>
